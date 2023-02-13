@@ -1,1 +1,42 @@
-<h2>Hellowwwwwwwww</h2>
+<div class="indexBox mt-3">
+  <div class="container col-6 d-flex flex-column justify-content-center mt-5">
+    {{!-- sort --}}
+    <select class="form-select" aria-label="Default select example">
+      <option selected>類別</option>
+      <option value="1">家居物業</option>
+      <option value="2">交通出行</option>
+      <option value="3">休閒娛樂</option>
+      <option value="3">餐飲食品</option>
+      <option value="3">其他</option>
+    </select>
+    {{!-- total amount --}}
+    <div class="totalAmount mt-5 d-inline-flex">
+      <div class="col-4">
+        <p style="font-size:24px;"><strong>總金額:</strong></p>
+      </div>
+      <div class="col-8 amount">
+        <p style="font-size:42px;">EXAMPLE</p>
+      </div>
+    </div>
+    {{!-- detail --}}
+    <div class="detailContainer mt-5">
+      <div class="detail d-flex justify-content-between align-items-center">
+        <i class="fa-solid fa-house Icon" style="font-size: 40px;"></i>
+        <div class="items flex-column col-6">
+          <div class="item" style="font-size: 25px;">FInish quickly</div>
+          <div class="datetime" style="font-size: 10px;">2023/1/1</div>
+        </div>
+        <div class="price" style="font-size: 40px;">100</div>
+        <div class="modify d-flex align-items-center">
+          <a href="/info">
+            <i class="fa-solid fa-circle-info me-2" style="font-size: 20px;"></i>
+          </a>
+          <a href="/delete">
+            <i class="fa-solid fa-trash-can" style="font-size: 20px;"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    {{!-- --- --}}
+  </div>
+</div>
