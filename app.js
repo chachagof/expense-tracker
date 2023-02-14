@@ -11,6 +11,10 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
+app.get('/expense/new',(req,res)=>{
+  res.render('new')
+})
+
 app.listen(port, () => {
   console.log(`Gogogo http://localhost:${port}/`)
 })
