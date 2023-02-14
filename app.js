@@ -1,26 +1,28 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const routes = require('./routes/index')
 
 const app = express()
 const port = 3000
 
+if(process.env.NODE_ENV !== 'prodution'){
+  require('dotenv').config()
+}
+
+mongoose.set({ 'strictQuery': false })
+mongoose.connect(process.env.MONGODB)
+
+const db = mongoose.connection
+
+db.on('error',err=>console.log(err))
+db.once('open',()=>console.log('MongoDB connected'))
+
 app.engine('hbs', exphbs.engine({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
-// main page
-app.get('/', (req, res) => {
-  res.render('index')
-})
+app.use(routes)
 
-// create page
-app.get('/expense/new',(req,res)=>{
-  res.render('new')
-})
-
-// edit page
-app.get('/expense/edit',(req,res)=>{
-  res.render('edit')
-})
 
 app.listen(port, () => {
   console.log(`Gogogo http://localhost:${port}/`)
