@@ -43,4 +43,12 @@ router.post('/:_id/edit',(req,res)=>{
     .catch(err => console.log(err))
 })
 
+// delete
+router.get('/:_id/delete',(req,res)=>{
+  const _id = req.params._id
+  Expense.findByIdAndDelete(_id)
+    .then(()=>res.redirect('/'))
+    .catch(err=>console.log(err))
+})
+
 module.exports = router
