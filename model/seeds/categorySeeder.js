@@ -1,12 +1,4 @@
-const mongoose = require('mongoose')
-if (process.env.NODE_ENV !== 'prodution') {
-  require('dotenv').config()
-}
-
-mongoose.set({ 'strictQuery': false })
-mongoose.connect(process.env.MONGODB)
-
-const db = mongoose.connection
+const db =require('../../config/mongoose')
 
 const Category = require('../category')
 const category = [
