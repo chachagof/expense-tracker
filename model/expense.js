@@ -16,6 +16,7 @@ const item = new Schema({
   },
   category: {
     type: Number,
+    ref:'categoryId',
     required: true
   }
 })
