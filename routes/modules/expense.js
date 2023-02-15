@@ -30,7 +30,7 @@ router.get('/:_id/edit', (req, res) => {
     })
     .catch(err=>console.log(err))
 })
-router.post('/:_id/edit',(req,res)=>{
+router.put('/:_id',(req,res)=>{
   const _id = req.params._id
   const { name, date, amount, category } = req.body
   // checked name (undone)
@@ -44,7 +44,7 @@ router.post('/:_id/edit',(req,res)=>{
 })
 
 // delete
-router.get('/:_id/delete',(req,res)=>{
+router.delete('/:_id',(req,res)=>{
   const _id = req.params._id
   Expense.findByIdAndDelete(_id)
     .then(()=>res.redirect('/'))

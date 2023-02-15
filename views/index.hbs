@@ -29,12 +29,14 @@
         </div>
         <div class="price" style="font-size: 40px;">{{this.amount}}</div>
         <div class="modify d-flex align-items-center">
-          <a href="/expense/{{this._id}}/edit">
-            <i class="fa-solid fa-circle-info me-2" style="font-size: 20px;"></i>
+          <a href="/expense/{{this._id}}/edit" class="btn btn-outline-primary me-2">
+            <i class="fa-solid fa-circle-info" style="font-size: 20px;"></i>
           </a>
-          <a href="/expense/{{this._id}}/delete">
-            <i class="fa-solid fa-trash-can" style="font-size: 20px;"></i>
-          </a>
+          <form action="/expense/{{this._id}}?_method=DELETE" method="post">
+            <button type="submit" class="btn btn-outline-primary">
+              <i class="fa-solid fa-trash-can" style="font-size: 20px;"></i>
+            </button>
+          </form>
         </div>
       </div>
     </div>
