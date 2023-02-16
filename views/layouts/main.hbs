@@ -11,9 +11,14 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-light" style="background-color: #9ed9f3;">
-    <div class="container-fluid">
+  <nav class="navbar navbar-light " style="background-color: #9ed9f3;">
+    <div class="container-fluid d-flex justify-content-around">
       <a class="navbar-brand" href="/">Expense Tracker</a>
+      {{#if isAuthenticated}}
+      <a href="/users/logout" class="btn btn-outline-secondary">Logout</a>
+      {{else}}
+      <a href="/users/login" class="btn btn-outline-secondary">Login</a>
+      {{/if}}
     </div>
   </nav>
 
