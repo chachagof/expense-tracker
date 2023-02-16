@@ -6,27 +6,27 @@ module.exports = (app) => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-  passport.use(new localStrategy({ usernameField: "email" }, (email, password, done) => {
-    User.findOne({email})
-      .then(user=>{
-        if(!user){
-          return done(null,false,{message:'no user'})
+  passport.use(new localStrategy({ usernameField: "email", passReqToCallback: true }, (req, email, password, done) => {
+    User.findOne({ email })
+      .then(user => {
+        if (!user) {
+          return done(null, false, req.flash('error_msg', `This email isn't registered.Please register first!`))
         }
-        if(user.password !== password){
-          return done(null,false,{message:'no password'})
+        if (user.password !== password) {
+          return done(null, false, req.flash('error_msg', `Email or Password incorrect!`))
         }
-        return done(null,user)
+        return done(null, user)
       })
-      .catch(err=>done(err,null))
+      .catch(err => done(err, null))
   }))
 
-  passport.serializeUser((user,done)=>{
-    done(null,user.id)
+  passport.serializeUser((user, done) => {
+    done(null, user.id)
   })
-  passport.deserializeUser((id,done)=>{
+  passport.deserializeUser((id, done) => {
     User.findById(id)
       .lean()
-      .then(user=>done(null,user))
-      .catch(err=>done(err,null))
+      .then(user => done(null, user))
+      .catch(err => done(err, null))
   })
 }

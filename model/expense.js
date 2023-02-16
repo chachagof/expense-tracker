@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const User = require('./user')
 
 const item = new Schema({
   name: {
@@ -16,7 +17,13 @@ const item = new Schema({
   },
   category: {
     type: Number,
-    ref:'categoryId',
+    ref: 'categoryId',
+    required: true
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'user',
+    index: true,
     required: true
   }
 })
