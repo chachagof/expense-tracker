@@ -6,9 +6,10 @@ const session = require('express-session')
 const usePassport = require('./config/passport')
 const flash = require('connect-flash')
 const helper = require('./public/helper')
+const passport = require('./config/passport')
 
 const app = express()
-const port = 3000
+const port = process.env.PORT
 
 if (process.env.NODE_ENV = 'production') {
   require('dotenv').config()
@@ -16,7 +17,7 @@ if (process.env.NODE_ENV = 'production') {
 
 require('./config/mongoose')
 
-app.engine('hbs', exphbs.engine({ defaultLayout: 'main', extname: '.hbs' ,helpers:helper}))
+app.engine('hbs', exphbs.engine({ defaultLayout: 'main', extname: '.hbs', helpers: helper }))
 app.set('view engine', 'hbs')
 
 app.use(express.urlencoded({ extended: true }))
@@ -31,14 +32,13 @@ app.use(session({
 usePassport(app)
 
 app.use(flash())
-app.use((req,res,next)=>{
+app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated
   res.locals.user = req.user
   res.locals.success_msg = req.flash('success_msg')
   res.locals.error_msg = req.flash('error_msg')
   next()
 })
-
 
 app.use(routes)
 
