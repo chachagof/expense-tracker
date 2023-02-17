@@ -1,19 +1,20 @@
-const db =require('../../config/mongoose')
-
+const db = require('../../config/mongoose')
 const Category = require('../category')
-const category = [
-  {1: '家居物業'},
-  {2: '交通出行'},
-  {3: '休閒娛樂'},
-  {4: '餐飲食品'},
-  {5: '其他'}
+
+const SEED_CATEGORY = [
+  { id: 1, name: '家居物業' },
+  { id: 2, name: '交通出行' },
+  { id: 3, name: '休閒娛樂' },
+  { id: 4, name: '餐飲食品' },
+  { id: 5, name: '其他' }
 ]
 
-db.on('error', err => console.log(err))
 db.once('open', () => {
-  for(let i = 1;i <= category.length;i++){
-    Category.create({id:i,name:category[i-1][i]})
-      .catch(err => console.log(err))
-  }
-  console.log('category seeds is done')
+  Promise.all(SEED_CATEGORY.map(item => {
+    return Category.create(item)
+  }))
+    .then(() => {
+      console.log('SEED_CATEGORY is done.')
+      process.exit()
+    })
 })

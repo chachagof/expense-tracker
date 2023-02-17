@@ -13,7 +13,7 @@
 <body>
   <nav class="navbar navbar-light " style="background-color: #9ed9f3;">
     <div class="container-fluid d-flex justify-content-around">
-      <a class="navbar-brand" href="/">Expense Tracker</a>
+      <a class="navbar-brand" href="/">{{#if isAuthenticated}}{{user.name}}'s{{/if}} Expense Tracker</a>
       {{#if isAuthenticated}}
       <a href="/users/logout" class="btn btn-outline-secondary">Logout</a>
       {{else}}
