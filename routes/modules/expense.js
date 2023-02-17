@@ -24,7 +24,6 @@ router.post('/new', (req, res) => {
 // edit page
 router.get('/:_id/edit', (req, res) => {
   const _id = req.params._id
-  
   Expense.findOne({_id})
     .lean()
     .then(expense =>{
