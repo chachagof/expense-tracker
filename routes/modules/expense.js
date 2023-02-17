@@ -10,12 +10,13 @@ router.get('/new', (req, res) => {
 
 router.post('/new', (req, res) => {
   const { name, date, amount, category } = req.body
+  const userId = req.user._id
   // checked name (undone)
   if (name.trim() === '') {
     return res.redirect('/expense/new')
   }
   const checkedName = name.trim()
-  Expense.create({ name: checkedName, date, amount, category })
+  Expense.create({ name: checkedName, date, amount, category, userId})
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })
@@ -23,6 +24,7 @@ router.post('/new', (req, res) => {
 // edit page
 router.get('/:_id/edit', (req, res) => {
   const _id = req.params._id
+  
   Expense.findOne({_id})
     .lean()
     .then(expense =>{

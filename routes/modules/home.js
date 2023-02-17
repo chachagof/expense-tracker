@@ -6,12 +6,13 @@ const icon = require('../../public/icon')
 
 // main page
 router.get('/', (req, res) => {
-  Expense.find()
+  const _id = req.user._id
+  Expense.find({ userId: _id })
     .lean()
     .sort({ name: "asc" })
     .then(expense => {
       // add fontawesome
-      expense.map(item =>{
+      expense.map(item => {
         const index = item.category
         item.icon = icon[index]
       })

@@ -19,6 +19,7 @@ app.engine('hbs', exphbs.engine({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 app.use(express.urlencoded({ extended: true }))
+app.use('/public', express.static('./public/'))
 app.use(methodOverride('_method'))
 app.use(session({
   secret: process.env.SECRET,
