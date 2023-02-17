@@ -1,3 +1,4 @@
+// count amount
 const totalAmount = document.querySelector('#totalAmount')
 const price = Array.from(document.querySelectorAll('.price'), item => item.textContent)
 
