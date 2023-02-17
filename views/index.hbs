@@ -1,14 +1,20 @@
 <div class="indexBox mt-3">
   <div class="container col-6 d-flex flex-column justify-content-center mt-5">
     {{!-- sort --}}
-    <select class="form-select" aria-label="Default select example">
-      <option selected>類別</option>
-      <option value="1">家居物業</option>
-      <option value="2">交通出行</option>
-      <option value="3">休閒娛樂</option>
-      <option value="4">餐飲食品</option>
-      <option value="5">其他</option>
-    </select>
+    {{> message}}
+    <form action="/sort" method="post">
+    <div class="sortForm d-flex">
+      <select type="submit" class="form-select" name="categoryId" aria-label="Default select example">
+        <option selected>類別</option>
+        <option value="1">家居物業</option>
+        <option value="2">交通出行</option>
+        <option value="3">休閒娛樂</option>
+        <option value="4">餐飲食品</option>
+        <option value="5">其他</option>
+      </select>
+      <button type="submit" class="btn btn-info col-2">分類</button>
+    </div>
+    </form>
     {{!-- total amount --}}
     <div class="totalAmountContainer mt-5 d-inline-flex">
       <div class="col-4">
