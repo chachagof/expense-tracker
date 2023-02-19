@@ -13,10 +13,15 @@ router.post('/new', (req, res) => {
   const userId = req.user._id
   // checked name (undone)
   if (name.trim() === '') {
+    req.flash('error_msg', `Please don't enter space character`)
+    return res.redirect('/expense/new')
+  }
+  if (!name || !date || !amount || !category) {
+    req.flash('error_msg', `Please enter valid character`)
     return res.redirect('/expense/new')
   }
   const checkedName = name.trim()
-  Expense.create({ name: checkedName, date, amount, category, userId})
+  Expense.create({ name: checkedName, date, amount, category, userId })
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })
@@ -24,14 +29,14 @@ router.post('/new', (req, res) => {
 // edit page
 router.get('/:_id/edit', (req, res) => {
   const _id = req.params._id
-  Expense.findOne({_id})
+  Expense.findOne({ _id })
     .lean()
-    .then(expense =>{
-      res.render('edit',{expense})
+    .then(expense => {
+      res.render('edit', { expense })
     })
-    .catch(err=>console.log(err))
+    .catch(err => console.log(err))
 })
-router.put('/:_id',(req,res)=>{
+router.put('/:_id', (req, res) => {
   const _id = req.params._id
   const { name, date, amount, category } = req.body
   // checked name (undone)
@@ -39,17 +44,17 @@ router.put('/:_id',(req,res)=>{
     return res.redirect('/expense/new')
   }
   const checkedName = name.trim()
-  Expense.findByIdAndUpdate(_id, { name:checkedName, date, amount, category})
+  Expense.findByIdAndUpdate(_id, { name: checkedName, date, amount, category })
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })
 
 // delete
-router.delete('/:_id',(req,res)=>{
+router.delete('/:_id', (req, res) => {
   const _id = req.params._id
   Expense.findByIdAndDelete(_id)
-    .then(()=>res.redirect('/'))
-    .catch(err=>console.log(err))
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
 })
 
 module.exports = router

@@ -1,6 +1,7 @@
 <div class="expense-new d-flex justify-content-center">
   <div class="expense-form d-flex flex-column align-items-center col-6 mb-5 mt-5">
     <h2 class="mb-4">請輸入你的支出</h2>
+    {{> message}}
     <div class="form-container col-7">
       <form action="/expense/new" method="post">
         <div class="mb-4 row">

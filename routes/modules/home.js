@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     .sort({ userId: 'asc' })
     .then(expense => {
       // add fontawesome
-      expense.map(item => {
+      expense.forEach(item => {
         const index = item.category
         item.icon = icon[index]
       })
