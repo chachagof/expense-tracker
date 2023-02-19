@@ -23,6 +23,10 @@ router.get('/', (req, res) => {
 router.post('/sort', (req, res) => {
   const { categoryId } = req.body
   const _id = req.user._id
+  if (categoryId === '類別') {
+    req.flash('error_msg', 'Please select a category')
+    return res.redirect('/')
+  }
   Expense.find({ userId: _id, category: categoryId })
     .lean()
     .sort({ userId: 'asc' })
