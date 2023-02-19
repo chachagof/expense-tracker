@@ -12,4 +12,4 @@ const categorySchema = new Schema({
   }
 })
 
-module.exports = mongoose.model('categoryId',categorySchema)
+module.exports = mongoose.model('categories',categorySchema)

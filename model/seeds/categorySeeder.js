@@ -1,5 +1,5 @@
 const db = require('../../config/mongoose')
-const Category = require('../category')
+const Category = require('../categoryId')
 
 const SEED_CATEGORY = [
   { id: 1, name: '家居物業' },
